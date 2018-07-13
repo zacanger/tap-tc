@@ -10,9 +10,7 @@
     "lib",
     "bin"
   ],
-  "bin": {
-    "tap-teamcity": "bin/cmd.js"
-  },
+  "bin": "bin/index.js",
   "scripts": {
     "preversion": "npm t",
     "test": "npm run test:lint && npm run test:tape",

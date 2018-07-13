@@ -8,7 +8,7 @@ Maintained fork of [tap-teamcity](https://github.com/smockle/tap-teamcity#readme
 
 ## Installation
 
-Run `npm install --save-dev tap-teamcity` to add `tap-teamcity` to your project.
+`npm i -D tap-tc`
 
 ## Usage
 
@@ -16,7 +16,7 @@ Run `npm install --save-dev tap-teamcity` to add `tap-teamcity` to your project.
 
 ```JavaScript
 const test = require('tape')
-const tapTeamCity = require('tap-teamcity')
+const tapTeamCity = require('tap-tc')
 
 test.createStream()
   .pipe(tapTeamCity())
@@ -31,7 +31,7 @@ test.createStream()
 {
   "name": "module-name",
   "scripts": {
-    "test": "tape test/**/*.js | tap-teamcity"
+    "test": "tape test/**/*.js | tap-tc"
   }
 }
 ```
@@ -41,15 +41,18 @@ Then run with `npm test`
 **Terminal**
 
 ```
-tape test/**/*.js | ./node_modules/.bin/tap-teamcity
+tape test/**/*.js | npx tap-tc
 ```
 
 ## Testing
 
-`tap-teamcity` includes several unit tests. After cloning the `tap-teamcity`
-repo locally, run `npm install` in the project folder to install dependencies,
-then `npm test` to execute the tests.
+Clone this project, run `npm ci`, then `npm t`.
 
 ## Credits
 
-Many thanks to @scottcorgan for creating the [tap-spec](https://github.com/scottcorgan/tap-spec) formatter, which inspired this one.
+Originally written by [@smockle](https://github.com/smockle), but their project
+is now archived and unmaintained.
+
+Many thanks to [@scottcorgan](https://github.com/scottcorgan) for creating the
+[tap-spec](https://github.com/scottcorgan/tap-spec) formatter, which inspired
+this one.
