@@ -65,7 +65,6 @@ build/Release
 bundle
 bundle.js
 coverage
-coverage.lcov
 data
 db
 lib-cov
