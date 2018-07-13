@@ -1,7 +1,7 @@
-import tapTeamCity from '../lib/tap-teamcity'
-import stream from 'stream'
-import util from 'util'
-import test from 'tape'
+const tapTeamCity = require('../lib/tap-teamcity')
+const stream = require('stream')
+const util = require('util')
+const test = require('tape')
 
 // Readable stream to load fake TAP output
 const TapStream = function (data) {
@@ -14,7 +14,7 @@ TapStream.prototype._read = function () {
   if (this.index === this.data.length) {
     return this.push(null)
   }
-  var data = this.data[this.index++]
+  const data = this.data[this.index++]
   this.push(data)
 }
 
@@ -32,54 +32,54 @@ AssertStream.prototype._write = function (chunk, enc, next) {
   next()
 }
 
-test('tapTeamCity, test', t => {
+test('tapTeamCity, test', (t) => {
   t.plan(3)
 
-  const input = ['# first test']
+  const input = [ '# first test' ]
   const tapStream = new TapStream(input)
 
-  const checkStart = data =>
+  const checkStart = (data) =>
     t.equal(
       data,
       "\n##teamcity[testSuiteStarted name='first test']",
       'streams test started message'
     )
-  const checkFinish = data =>
+  const checkFinish = (data) =>
     t.ok(
       /^\n##teamcity\[testSuiteFinished name='first test'/.test(data),
       'streams test finished message'
     )
-  const assertStream = new AssertStream([checkStart, checkFinish])
+  const assertStream = new AssertStream([ checkStart, checkFinish ])
   assertStream.on('finish', () => t.ok(true, 'ends'))
 
   tapStream.pipe(tapTeamCity()).pipe(assertStream)
 })
 
-test('tapTeamCity, ok assertion', t => {
+test('tapTeamCity, ok assertion', (t) => {
   t.plan(4)
 
-  const input = ['ok 1 first assert']
+  const input = [ 'ok 1 first assert' ]
   const tapStream = new TapStream(input)
 
-  const checkStart = data =>
+  const checkStart = (data) =>
     t.equal(
       data,
       "\n##teamcity[testStarted name='first assert' captureStandardOutput='true']",
       'streams assertion started message'
     )
-  const checkFinish = data =>
+  const checkFinish = (data) =>
     t.ok(
       /^\n##teamcity\[testFinished name='first assert'/.test(data),
       'streams assertion finished message'
     )
-  const checkEnd = data => t.equal(data, '\n', 'streams an empty string')
-  const assertStream = new AssertStream([checkStart, checkFinish, checkEnd])
+  const checkEnd = (data) => t.equal(data, '\n', 'streams an empty string')
+  const assertStream = new AssertStream([ checkStart, checkFinish, checkEnd ])
   assertStream.on('finish', () => t.ok(true, 'ends'))
 
   tapStream.pipe(tapTeamCity()).pipe(assertStream)
 })
 
-test('tapTeamCity, not ok assertion', t => {
+test('tapTeamCity, not ok assertion', (t) => {
   t.plan(4)
 
   const input = [
@@ -87,50 +87,50 @@ test('tapTeamCity, not ok assertion', t => {
   ]
   const tapStream = new TapStream(input)
 
-  const checkStart = data =>
+  const checkStart = (data) =>
     t.equal(
       data,
       "\n##teamcity[testStarted name='second assert' captureStandardOutput='true']",
       'streams assertion started message'
     )
-  const checkFailed = data =>
+  const checkFailed = (data) =>
     t.equal(
       data,
       "\n##teamcity[testFailed name='second assert' type='comparisonFailure' expected='false' actual='true']",
       'streams assertion failed message'
     )
-  const checkFinish = data =>
+  const checkFinish = (data) =>
     t.ok(
       /^\n##teamcity\[testFinished name='second assert'/.test(data),
       'streams assertion finished message'
     )
-  const assertStream = new AssertStream([checkStart, checkFailed, checkFinish])
+  const assertStream = new AssertStream([ checkStart, checkFailed, checkFinish ])
   assertStream.on('finish', () => t.ok(true, 'ends'))
 
   tapStream.pipe(tapTeamCity()).pipe(assertStream)
 })
 
-test('tapTeamCity, escaping', t => {
+test('tapTeamCity, escaping', (t) => {
   t.plan(3)
 
-  const input = ["# escaped characters: ' | [ ]"]
+  const input = [ "# escaped characters: ' | [ ]" ]
   const tapStream = new TapStream(input)
 
   const expectedEscaping = "escaped characters: |' || |[ |]"
-  const checkStart = data =>
+  const checkStart = (data) =>
     t.equal(
       data,
       `\n##teamcity[testSuiteStarted name='${expectedEscaping}']`,
       'escapes special characters (in test start message)'
     )
-  const checkFinish = data =>
+  const checkFinish = (data) =>
     t.ok(
       data.startsWith(
         `\n##teamcity[testSuiteFinished name='${expectedEscaping}'`
       ),
       'escapes special characters (in test end message)'
     )
-  const assertStream = new AssertStream([checkStart, checkFinish])
+  const assertStream = new AssertStream([ checkStart, checkFinish ])
   assertStream.on('finish', () => t.ok(true, 'ends'))
 
   tapStream.pipe(tapTeamCity()).pipe(assertStream)

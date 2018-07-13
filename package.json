@@ -1,59 +1,48 @@
 {
   "name": "tap-teamcity",
-  "version": "3.0.2",
   "description": "Formats TAP output for TeamCity.",
-  "main": "lib/tap-teamcity.js",
-  "module": "lib/tap-teamcity.mjs",
-  "scripts": {
-    "debug": "node --nolazy --inspect-brk=5858 -r @std/esm test/index.mjs",
-    "test": "node -r @std/esm test/index.mjs | colortape",
-    "teamcity": "node -r @std/esm test/index.mjs | ./bin/cmd.js",
-    "coverage": "nyc --require @std/esm --extension .mjs --reporter=lcov node test/index.mjs | colortape",
-    "postcoverage": "nyc report",
-    "prepublishOnly": "npm test",
-    "precommit": "lint-staged"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/smockle/tap-teamcity.git"
-  },
+  "version": "3.0.2",
   "author": "Clay Miller <clay@smockle.com> (https://smockle.com)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/smockle/tap-teamcity/issues"
-  },
-  "homepage": "https://github.com/smockle/tap-teamcity#readme",
-  "dependencies": {
-    "@std/esm": "^0.18.0",
-    "duplexer": "^0.1.1",
-    "tap-out": "^2.0.0",
-    "through2": "^2.0.3"
-  },
+  "main": "lib/tap-teamcity.js",
+  "module": "lib/tap-teamcity.mjs",
+  "files": [
+    "lib",
+    "bin"
+  ],
   "bin": {
     "tap-teamcity": "bin/cmd.js"
   },
-  "lint-staged": {
-    "*.{js,mjs}": [
-      "./node_modules/.bin/prettier-eslint --write",
-      "git add"
-    ]
+  "scripts": {
+    "preversion": "npm t",
+    "test": "npm run test:lint && npm run test:tape",
+    "test:lint": "eslint bin lib test",
+    "test:tape": "node test/ | tap-spec"
   },
-  "@std/esm": {
-    "cjs": true
+  "homepage": "https://github.com/smockle/tap-teamcity#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacanger/tap-teamcity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smockle/tap-teamcity/issues"
+  },
+  "dependencies": {
+    "duplexer": "0.1.1",
+    "tap-out": "3.0.0",
+    "through2": "2.0.3"
   },
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "colortape": "^0.1.2",
-    "eslint": "^4.1.0",
-    "eslint-config-standard": "^10.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.0",
-    "husky": "^0.14.0",
-    "lint-staged": "^6.0.0",
-    "nyc": "^11.0.2",
-    "prettier-eslint-cli": "^4.3.0",
-    "tape": "^4.4.0"
+    "babel-eslint": "8.2.6",
+    "eslint": "5.1.0",
+    "eslint-config-zacanger": "3.3.2",
+    "eslint-plugin-babel": "5.1.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "3.1.0",
+    "eslint-plugin-unicorn": "4.0.3",
+    "tap-spec": "5.0.0",
+    "tape": "4.9.1"
   }
 }

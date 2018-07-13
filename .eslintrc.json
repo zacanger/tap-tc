@@ -1,6 +1,3 @@
 {
-  "extends": "standard",
-  "rules": {
-    "no-global-assign": ["error", { "exceptions": ["require"] }]
-  }
+  "extends": "zacanger"
 }

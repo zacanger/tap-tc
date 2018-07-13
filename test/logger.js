@@ -1,8 +1,8 @@
-import Logger from '../lib/logger'
-import test from 'tape'
-import through from 'through2'
+const Logger = require('../lib/logger')
+const test = require('tape')
+const through = require('through2')
 
-test('Logger.constructor', t => {
+test('Logger.constructor', (t) => {
   t.plan(2)
   const output = through()
 
@@ -12,12 +12,12 @@ test('Logger.constructor', t => {
   t.equal(Logger(output).output, output, 'stores output stream')
 })
 
-test('Logger.prototype.startTest', t => {
+test('Logger.prototype.startTest', (t) => {
   t.plan(4)
   const pastTime = new Date().getTime()
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -42,11 +42,11 @@ test('Logger.prototype.startTest', t => {
   )
 })
 
-test('Logger.prototype.finishTest', t => {
+test('Logger.prototype.finishTest', (t) => {
   t.plan(2)
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -69,12 +69,12 @@ test('Logger.prototype.finishTest', t => {
   )
 })
 
-test('Logger.prototype.startAssertion', t => {
+test('Logger.prototype.startAssertion', (t) => {
   t.plan(4)
   const pastTime = new Date().getTime()
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -99,11 +99,11 @@ test('Logger.prototype.startAssertion', t => {
   )
 })
 
-test('Logger.prototype.failAssertion', t => {
+test('Logger.prototype.failAssertion', (t) => {
   t.plan(1)
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -124,11 +124,11 @@ test('Logger.prototype.failAssertion', t => {
   )
 })
 
-test('Logger.prototype.failAssertion with quotes', t => {
+test('Logger.prototype.failAssertion with quotes', (t) => {
   t.plan(1)
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -143,16 +143,18 @@ test('Logger.prototype.failAssertion with quotes', t => {
   // 13
   t.equal(
     result,
-    `\n##teamcity[testFailed name='${assertion.name}' type='comparisonFailure' expected='expected|' quotes|'' actual='actual |' with |' quotes']`,
+    `\n##teamcity[testFailed name='${
+      assertion.name
+    }' type='comparisonFailure' expected='expected|' quotes|'' actual='actual |' with |' quotes']`,
     'escapes quotes'
   )
 })
 
-test('Logger.prototype.failAssertion without error', t => {
+test('Logger.prototype.failAssertion without error', (t) => {
   t.plan(1)
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
@@ -169,11 +171,11 @@ test('Logger.prototype.failAssertion without error', t => {
   )
 })
 
-test('Logger.prototype.finishAssertion', t => {
+test('Logger.prototype.finishAssertion', (t) => {
   t.plan(1)
-  var result = ''
+  let result = ''
   const output = through()
-  output.on('data', d => {
+  output.on('data', (d) => {
     result += d
   })
   const logger = Logger(output)
