@@ -1,8 +1,8 @@
 {
-  "name": "tap-teamcity",
+  "name": "tap-tc",
   "description": "Formats TAP output for TeamCity.",
   "version": "3.0.2",
-  "author": "Clay Miller <clay@smockle.com> (https://smockle.com)",
+  "author": "Zac Anger <zac@zacanger.com> (http://zacanger.com)",
   "license": "ISC",
   "main": "lib/tap-teamcity.js",
   "module": "lib/tap-teamcity.mjs",
@@ -19,13 +19,13 @@
     "test:lint": "eslint bin lib test",
     "test:tape": "node test/ | tap-spec"
   },
-  "homepage": "https://github.com/smockle/tap-teamcity#readme",
+  "homepage": "https://github.com/zacanger/tap-tc#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zacanger/tap-teamcity.git"
   },
   "bugs": {
-    "url": "https://github.com/smockle/tap-teamcity/issues"
+    "url": "https://github.com/zacanger/tap-tc/issues"
   },
   "dependencies": {
     "duplexer": "0.1.1",

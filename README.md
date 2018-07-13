@@ -46,7 +46,9 @@ tape test/**/*.js | ./node_modules/.bin/tap-teamcity
 
 ## Testing
 
-`tap-teamcity` includes several unit tests. After cloning the `tap-teamcity` repo locally, run `npm install` in the project folder to install dependencies, then `npm test` to execute the tests.
+`tap-teamcity` includes several unit tests. After cloning the `tap-teamcity`
+repo locally, run `npm install` in the project folder to install dependencies,
+then `npm test` to execute the tests.
 
 ## Credits
 
