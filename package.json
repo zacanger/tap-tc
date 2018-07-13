@@ -12,11 +12,12 @@
   ],
   "bin": "bin/index.js",
   "scripts": {
+    "build": "npm run test:lint && npm run cover",
+    "cover": "nyc npm run test:tape",
     "preversion": "npm t",
     "test": "npm run test:lint && npm run test:tape",
-    "test:lint": "eslint bin lib test",
-    "test:tape": "node test/ | tap-spec",
-    "build": "npm run test:lint && nyc npm run test:tape"
+    "test:lint": "eslint bin lib",
+    "test:tape": "node lib/*.test.js | tap-spec"
   },
   "homepage": "https://github.com/zacanger/tap-tc#readme",
   "repository": {
@@ -39,7 +40,6 @@
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
-    "babel-register": "6.26.0",
     "eslint": "5.1.0",
     "eslint-config-zacanger": "3.3.2",
     "eslint-plugin-babel": "5.1.0",
@@ -54,10 +54,7 @@
   },
   "nyc": {
     "include": [
-      "src"
-    ],
-    "require": [
-      "babel-register"
+      "lib"
     ],
     "sourceMap": true,
     "instrument": true,
