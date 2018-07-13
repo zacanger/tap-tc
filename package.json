@@ -27,6 +27,12 @@
   "bugs": {
     "url": "https://github.com/zacanger/tap-tc/issues"
   },
+  "keywords": [
+    "output",
+    "tap",
+    "teamcity",
+    "test"
+  ],
   "dependencies": {
     "duplexer": "0.1.1",
     "tap-out": "3.0.0",
