@@ -1,6 +1,6 @@
 # tap-tc
 
-[![npm](https://img.shields.io/npm/v/tap-tc.svg)](https://www.npmjs.com/package/tap-tc)
+[![npm](https://img.shields.io/npm/v/tap-tc.svg)](https://www.npmjs.com/package/tap-tc) [![CircleCI](https://circleci.com/gh/zacanger/tap-tc/tree/master.svg?style=svg)](https://circleci.com/gh/zacanger/tap-tc/tree/master) [![codecov](https://codecov.io/gh/zacanger/tap-tc/branch/master/graph/badge.svg)](https://codecov.io/gh/zacanger/tap-tc)
 
 Formats [TAP](https://testanything.org/tap-specification.html) output for TeamCity.
 
