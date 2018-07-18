@@ -14,7 +14,7 @@ Maintained fork of [tap-teamcity](https://github.com/smockle/tap-teamcity#readme
 
 ### Streaming
 
-```JavaScript
+```javascript
 const test = require('tape')
 const tapTeamCity = require('tap-tc')
 
@@ -27,9 +27,8 @@ test.createStream()
 
 **package.json**
 
-```JSON
+```json
 {
-  "name": "module-name",
   "scripts": {
     "test": "tape test/**/*.js | tap-tc"
   }
@@ -40,7 +39,7 @@ Then run with `npm test`
 
 **Terminal**
 
-```
+```shell
 tape test/**/*.js | npx tap-tc
 ```
 

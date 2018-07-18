@@ -41,16 +41,19 @@
   "devDependencies": {
     "babel-eslint": "8.2.6",
     "eslint": "5.1.0",
-    "eslint-config-zacanger": "3.3.2",
+    "eslint-config-zacanger": "3.3.3",
     "eslint-plugin-babel": "5.1.0",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-node": "7.0.1",
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-standard": "3.1.0",
     "eslint-plugin-unicorn": "4.0.3",
     "nyc": "12.0.2",
     "tap-spec": "5.0.0",
     "tape": "4.9.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   },
   "nyc": {
     "include": [
