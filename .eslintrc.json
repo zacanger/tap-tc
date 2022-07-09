@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": ["zacanger", "plugin:node/recommended"],
-  "rules": {
-    "node/no-unpublished-require": 0
-  }
-}
