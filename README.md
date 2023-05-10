@@ -4,6 +4,8 @@ Formats [TAP](https://testanything.org/tap-specification.html) output for TeamCi
 
 Maintained fork of [tap-teamcity](https://github.com/smockle/tap-teamcity#readme).
 
+[Donate](https://ko-fi.com/zacanger)
+
 ## Installation
 
 `npm i -D tap-tc`
